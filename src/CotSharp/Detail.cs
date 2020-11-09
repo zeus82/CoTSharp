@@ -3,13 +3,17 @@ using System.Xml.Serialization;
 
 namespace CotSharp
 {
+    /// <remarks/>
     [XmlRoot("detail")]
     [XmlType(TypeName = "detail")]
     public partial class Detail
     {
-        [XmlAnyElement()]
-        public XmlElement[] Any { get; set; }
+        /// <remarks/>
+        [XmlElement("contact", typeof(Contact))]
+        [XmlElement("any")]
+        public object[] Any { get; set; }
 
+        /// <remarks/>
         [XmlAnyAttribute()]
         public XmlAttribute[] AnyAttr { get; set; }
     }
