@@ -6,7 +6,7 @@ namespace CotSharp
     [DebuggerStepThrough]
     [XmlRoot("event")]
     [XmlType(TypeName = "event")]
-    public partial class Event
+    public class Event
     {
         /// <summary>
         /// The access field is intended to indicates who has access to this

@@ -39,7 +39,9 @@ namespace CotSharp
         /// The frequency (in MHz) on which the unit may be contacted via voice.
         /// </summary>
         [XmlAttribute("freq")]
-        public decimal? Freq { get; set; }
+        public decimal Freq { get; set; }
+        [XmlIgnore]
+        public bool FreqSpecified { get; set; }
 
         /// <summary>
         /// DNS-resolvable host name
