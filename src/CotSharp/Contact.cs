@@ -1,176 +1,76 @@
 ﻿using System.Xml.Serialization;
 
-[XmlRoot("contact")]
-[XmlType(TypeName = "contact")]
-public partial class Contact
+namespace CotSharp
 {
-    private System.Xml.XmlElement[] anyField;
-
-    private string callsignField;
-
-    private string dsnField;
-    private string emailField;
-    private decimal freqField;
-
-    private bool freqFieldSpecified;
-    private string hostnameField;
-    private string modulationField;
-    private string phoneField;
-    private decimal versionField;
-
-    private bool versionFieldSpecified;
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAnyElementAttribute()]
-    public System.Xml.XmlElement[] Any
+    /// <summary>
+    /// This is a Cursor On Target sub-schema representing communications parameters for
+    /// contacting a friendly element for human-to-human communcations. The objective of
+    /// this schema is to carry the essential information needed to contact this entity by
+    /// a variety of means.  None of the modes of contact (e.g., e-mail, phone, etc) is
+    /// required.
+    /// </summary>
+    [XmlRoot("contact")]
+    [XmlType(TypeName = "contact")]
+    public class Contact
     {
-        get
-        {
-            return this.anyField;
-        }
-        set
-        {
-            this.anyField = value;
-        }
-    }
+        [XmlAnyElement]
+        [XmlElement("any")]
+        public System.Xml.XmlElement[] Any { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string callsign
-    {
-        get
-        {
-            return this.callsignField;
-        }
-        set
-        {
-            this.callsignField = value;
-        }
-    }
+        /// <summary>
+        /// The unit's voice call sign
+        /// </summary>
+        [XmlAttribute("callsign")]
+        public string Callsign { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string dsn
-    {
-        get
-        {
-            return this.dsnField;
-        }
-        set
-        {
-            this.dsnField = value;
-        }
-    }
+        /// <summary>
+        /// DSN number for this element (if applicable)
+        /// </summary>
+        [XmlAttribute("dsn")]
+        public string Dsn { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string email
-    {
-        get
-        {
-            return this.emailField;
-        }
-        set
-        {
-            this.emailField = value;
-        }
-    }
+        /// <summary>
+        /// e-mail address for this element (if applicable)
+        /// </summary>
+        [XmlAttribute("email")]
+        public string Email { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public decimal freq
-    {
-        get
-        {
-            return this.freqField;
-        }
-        set
-        {
-            this.freqField = value;
-        }
-    }
+        /// <summary>
+        /// The frequency (in MHz) on which the unit may be contacted via voice.
+        /// </summary>
+        [XmlAttribute("freq")]
+        public decimal? Freq { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool freqSpecified
-    {
-        get
-        {
-            return this.freqFieldSpecified;
-        }
-        set
-        {
-            this.freqFieldSpecified = value;
-        }
-    }
+        /// <summary>
+        /// DNS-resolvable host name
+        /// </summary>
+        [XmlAttribute("hostname")]
+        public string Hostname { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string hostname
-    {
-        get
-        {
-            return this.hostnameField;
-        }
-        set
-        {
-            this.hostnameField = value;
-        }
-    }
+        /// <summary>
+        /// Amplifies the radio frequency information provided.  Contains the modulation type
+        /// for the communication.  (Coding tbd, should cover complex modulations such as
+        /// SINCGARS hopping, csma, etc...) am|fm
+        /// </summary>
+        [XmlAttribute("modulation")]
+        public string Modulation { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string modulation
-    {
-        get
-        {
-            return this.modulationField;
-        }
-        set
-        {
-            this.modulationField = value;
-        }
-    }
+        /// <summary>
+        /// Phone number for this element (if applicable)
+        /// </summary>
+        [XmlAttribute("phone")]
+        public string Phone { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public string phone
-    {
-        get
-        {
-            return this.phoneField;
-        }
-        set
-        {
-            this.phoneField = value;
-        }
-    }
+        /// <summary>
+        /// Version tag for this sub schema.  Neccessary to ensure upward compatibility with future revisions.
+        /// </summary>
+        [XmlAttribute("version")]
+        public decimal Version { get; set; }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public decimal version
-    {
-        get
-        {
-            return this.versionField;
-        }
-        set
-        {
-            this.versionField = value;
-        }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool versionSpecified
-    {
-        get
-        {
-            return this.versionFieldSpecified;
-        }
-        set
-        {
-            this.versionFieldSpecified = value;
-        }
+        /// <summary>
+        /// If the version is specified
+        /// </summary>
+        [XmlIgnore]
+        public bool VersionSpecified { get; set; }
     }
 }

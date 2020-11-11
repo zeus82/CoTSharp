@@ -53,7 +53,7 @@ namespace CopSharp.Tests
                     {
                         new Contact
                         {
-                            callsign = "jeev"
+                            Callsign = "jeev"
                         }
                     }
                 }
