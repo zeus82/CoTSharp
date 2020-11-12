@@ -14,75 +14,32 @@ using System.Xml.Serialization;
 namespace CotSharp
 {
 
+    /// <summary>
+    /// This is a Cursor On Target detail sub-schema that holds "fingerprints" of the system 
+    /// that have processed a particular CoT event.  This information aids in the routine of 
+    /// CoT messages along a particular processing chain.  Each system that touches a 
+    /// particular CoT event is expected to add its own attribute to this entity.  The 
+    /// attribute name should reflect the particular system name, and the value should be the 
+    /// time stamp when the information was sent out from that system.  Some illustrative 
+    /// _flow-tags_ attributes are adocs, fbcb2, and tadilj, but the attribute list is not a 
+    /// closed set.
+    /// </summary>
     [DebuggerStepThrough]
-    [XmlRoot("_flowtags_")]
-    [XmlType(TypeName = "_flowtags_")]
+    [XmlRoot("_flow-tags_")]
+    [XmlType(TypeName = "_flow-tags_")]
     public partial class Flowtags
     {
+        [XmlAnyElement]
+        public System.Xml.XmlElement[] Any { get; set; }
 
-        private System.Xml.XmlElement[] anyField;
+        [XmlAttribute("version")]
+        public decimal Version { get; set; }
 
-        private decimal versionField;
+        [XmlIgnore]
+        public bool VersionSpecified { get; set; }
 
-        private bool versionFieldSpecified;
-
-        private System.Xml.XmlAttribute[] anyAttrField;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal version
-        {
-            get
-            {
-                return this.versionField;
-            }
-            set
-            {
-                this.versionField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool versionSpecified
-        {
-            get
-            {
-                return this.versionFieldSpecified;
-            }
-            set
-            {
-                this.versionFieldSpecified = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
+        [XmlAnyAttribute]
+        public System.Xml.XmlAttribute[] AnyAttr { get; set; }
     }
 
 }
