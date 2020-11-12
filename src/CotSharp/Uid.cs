@@ -9,80 +9,44 @@
 //------------------------------------------------------------------------------
 
 using System.Diagnostics;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace CotSharp
 {
-
+    /// <summary>
+    /// This is a Cursor On Target detail sub-schema that holds the unique ID assigned 
+    /// by each system that processed this event.  Most systems (including CoT) have their 
+    /// own method for assigning system-wide unique identifiers for a particular object.  
+    /// In general, it is not possible for a single UID to be used for all systems.  
+    /// This 'uid' entity provides a common place where each systems can record its  
+    /// particular UID for each CoT event.  Like the _flow-tags_ element, each system is 
+    /// responsible for adding its own attribute to this entity.  The name of the attribute 
+    /// should represent the system, and the value of the attribute should be the id that 
+    /// system assigned to this CoT object.
+    /// </summary>
     [DebuggerStepThrough]
     [XmlRoot("uid")]
     [XmlType(TypeName = "uid")]
     public partial class Uid
     {
 
-        private System.Xml.XmlElement[] anyField;
+        [XmlAnyElement]
+        public XmlElement[] Any { get; set; }
 
-        private decimal versionField;
+        /// <summary>
+        /// The system-specific identifier (a.k.a UID, or track number) associated with the
+        /// entity described by the encapsulating CoT object.
+        /// </summary>
+        [XmlAttribute("version")]
+        public decimal Version { get; set; }
 
-        private bool versionFieldSpecified;
-
-        private System.Xml.XmlAttribute[] anyAttrField;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
+        [XmlIgnore]
+        public bool VersionSpecified { get; set; }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal version
-        {
-            get
-            {
-                return this.versionField;
-            }
-            set
-            {
-                this.versionField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool versionSpecified
-        {
-            get
-            {
-                return this.versionFieldSpecified;
-            }
-            set
-            {
-                this.versionFieldSpecified = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
+        [XmlAnyAttribute]
+        public XmlAttribute[] AnyAttr { get; set; }
     }
 
 }
