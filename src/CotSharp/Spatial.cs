@@ -22,7 +22,7 @@ namespace CotSharp
 
         private SpatialAttitude attitudeField;
 
-        private spatialSpin spinField;
+        private SpatialSpin spinField;
 
         private decimal versionField;
 
@@ -42,7 +42,7 @@ namespace CotSharp
         }
 
         /// <remarks/>
-        public spatialSpin spin
+        public SpatialSpin spin
         {
             get
             {

@@ -20,9 +20,9 @@ namespace CotSharp
     public partial class Shape
     {
 
-        private shapeEllipse ellipseField;
+        private ShapeEllipse ellipseField;
 
-        private shapePolyline polylineField;
+        private ShapePolyline polylineField;
 
         private ShapeDxf dxfField;
 
@@ -31,7 +31,7 @@ namespace CotSharp
         private bool versionFieldSpecified;
 
         /// <remarks/>
-        public shapeEllipse ellipse
+        public ShapeEllipse ellipse
         {
             get
             {
@@ -44,7 +44,7 @@ namespace CotSharp
         }
 
         /// <remarks/>
-        public shapePolyline polyline
+        public ShapePolyline polyline
         {
             get
             {
